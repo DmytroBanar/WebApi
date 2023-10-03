@@ -90,7 +90,7 @@ namespace WebApplication3.Repository
         {
             var procedureName = "ShowCompanyForProvidedEmployeeId";
             var parameters = new DynamicParameters();
-            parameters.Add("Id", id, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("@EmployeeId", id, DbType.Int32, ParameterDirection.Input);
             using (var connection = _context.CreateConnection())
             {
                 var company = await connection.QueryFirstOrDefaultAsync<Company>(
