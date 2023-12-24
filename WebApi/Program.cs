@@ -29,4 +29,20 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+if (app.Environment.IsDevelopment())
+{
+    // ????????? middleware ??? ??????????????? ?? Swagger UI
+    app.Use(async (context, next) =>
+    {
+        if (context.Request.Path == "/")
+        {
+            context.Response.Redirect("/swagger");
+        }
+        else
+        {
+            await next();
+        }
+    });
+}
+
 app.Run();
